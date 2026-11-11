@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ADITI 👑</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Poppins:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:radial-gradient(circle at top,#ff9ec4,#ff5fa2,#b83280);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow:hidden;
+}
+
+/* Fade */
+#mainContent{
+display:none;
+opacity:0;
+animation:fade 2s ease forwards;
+}
+@keyframes fade{
+from{opacity:0;transform:scale(0.95);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* Card */
+.card{
+background:rgba(255,255,255,0.95);
+padding:25px;
+border-radius:20px;
+width:90%;
+max-width:500px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+max-height:85vh;
+overflow-y:auto;
+}
+
+/* Title */
+.birthday-text{
+font-family:'Cinzel',serif;
+font-size:clamp(20px,5vw,28px);
+letter-spacing:3px;
+color:#b83280;
+}
+
+.name{
+font-family:'Great Vibes',cursive;
+font-size:clamp(40px,8vw,60px);
+background:linear-gradient(90deg,#ffb6d9,#f9e79f,#ff69b4,#f9e79f);
+background-size:300% auto;
+color:transparent;
+-webkit-background-clip:text;
+background-clip:text;
+text-shadow:0 5px 20px rgba(255,105,180,0.6);
+animation:shine 4s linear infinite,floatName 3s ease-in-out infinite;
+}
+
+@keyframes shine{
+0%{background-position:0% center;}
+100%{background-position:300% center;}
+}
+
+@keyframes floatName{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+}
+
+/* Glitter Glow Photo Frames */
+.photo-frame{
+position:relative;
+display:inline-block;
+padding:12px;
+margin:15px;
+border-radius:18px;
+overflow:hidden;
+
+/* Animated glitter gradient */
+background:linear-gradient(145deg,#ffdf88,#ffb6d9,#fff0c9,#ffdf88);
+background-size:300% 300%;
+animation:glitterMove 6s linear infinite, glowPulse 3s ease-in-out infinite alternate;
+
+box-shadow:
+0 0 15px rgba(255,215,0,0.6),
+0 0 30px rgba(255,105,180,0.5),
+0 0 45px rgba(255,215,0,0.4);
+}
+
+/* Moving glitter background */
+@keyframes glitterMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Glitter Shine Sweep */
+.photo-frame::before{
+content:"";
+position:absolute;
+top:0;
+left:-75%;
+width:50%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.7),
+transparent
+);
+transform:skewX(-25deg);
+animation:shineSweep 3s infinite;
+}
+
+@keyframes shineSweep{
+0%{left:-75%;}
+100%{left:125%;}
+}
+
+.photo-frame img{
+width:100%;
+max-width:250px;
+border-radius:12px;
+display:block;
+}
+
+/* Typing areas */
+.birthdate{
+margin-top:10px;
+font-family:'Cinzel',serif;
+font-size:18px;
+letter-spacing:2px;
+color:#a83279;
+min-height:24px;
+}
+
+#quote{
+margin-top:20px;
+line-height:1.6;
+min-height:100px;
+}
+
+.cursor{
+display:inline-block;
+width:2px;
+background:#ff69b4;
+animation:blink 1s infinite;
+}
+@keyframes blink{
+0%,50%,100%{opacity:1;}
+25%,75%{opacity:0;}
+}
+
+button{
+padding:10px 25px;
+border-radius:25px;
+border:none;
+background:#ff69b4;
+color:white;
+margin-top:20px;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{transform:scale(1.1);}
+
+.page-footer{
+margin-top:25px;
+font-size:0.9em;
+color:#eb1414;
+opacity:0.9;
+text-align:center;
+}
+
+.page-footer a{
+color:#f70606d0;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:6px;
+}
+
+.page-footer img{
+width:16px;
+height:16px;
+object-fit:contain;
+}
+
+#passwordScreen{
+text-align:center;
+color:white;
+}
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div id="passwordScreen">
+<h2>Enter Secret Password 💌</h2>
+<input type="password" id="passwordInput">
+<br>
+<button onclick="checkPassword()">Unlock 👑</button>
+</div>
+
+<div id="mainContent">
+<div class="card">
+
+<div class="birthday-text">HAPPY BIRTHDAY</div>
+<div class="name">ADITI</div>
+
+<div class="birthdate">
+<span id="dateText"></span><span class="cursor"></span>
+</div>
+
+<div id="quote"></div><span class="cursor"></span>
+
+<button onclick="showSurprise()">Open Surprise 🎁</button>
+
+<div id="surpriseSection" style="display:none;">
+
+<div class="photo-frame">
+<img src="https://i.pinimg.com/1200x/54/00/23/5400231a3043f84698e7f3420a121ce5.jpg">
+</div>
+
+<div class="memory-text">
+HAPPY BIRTHDAY ADITI 🥳💐🎉🎁🎂 WISHING YOU THE HAPPIEST BIRTHDAY FILLED WITH LOVE 💕 ,LAUGHTER 🥳,AND ENDLESS JOY😊, MAY THIS YEAR BRING YOU ALL YOUR HEART DESIRES 🎁, CHEERS TO CELEBRATING YOUR BIRTHDAY 🎇
+</div>
+
+</div>
+
+<div class="page-footer">
+Made with 💖 by 
+<a href="https://www.instagram.com/fardinhussain99" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png">
+@fardinhussain99
+</a>
+</div>
+
+</div>
+</div>
+
+<audio id="bgMusic" preload="auto" loop>
+<source src="https://github.com/fardinhussain99-hub/BIrthday-Prakriti/raw/refs/heads/main/chamber-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const birthDateText="✨ 12 NOVEMBER 2026 ✨";
+let dateIndex=0;
+
+const quoteText=`Happy Birthday, ADITI.
+
+You are grace, strength,
+and warmth wrapped into one beautiful soul.
+
+The world feels brighter
+simply because you are in it. 💖`;
+
+let quoteIndex=0;
+
+function typeBirthDate(){
+if(dateIndex<birthDateText.length){
+document.getElementById("dateText").innerHTML+=birthDateText.charAt(dateIndex);
+dateIndex++;
+setTimeout(typeBirthDate,70);
+}
+}
+
+function typeQuote(){
+if(quoteIndex<quoteText.length){
+document.getElementById("quote").innerHTML+=quoteText.charAt(quoteIndex);
+quoteIndex++;
+setTimeout(typeQuote,40);
+}
+}
+
+function checkPassword(){
+if(document.getElementById("passwordInput").value==="2006"){
+document.getElementById("passwordScreen").style.display="none";
+document.getElementById("mainContent").style.display="flex";
+document.getElementById("bgMusic").play().catch(()=>{});
+typeBirthDate();
+typeQuote();
+startFireworks();
+}else{
+alert("Wrong password 💔");
+}
+}
+
+function showSurprise(){
+document.getElementById("surpriseSection").style.display="block";
+}
+
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function startFireworks(){
+for(let i=0;i<150;i++){
+setTimeout(()=>{
+const x=Math.random()*canvas.width;
+const y=Math.random()*canvas.height/2;
+ctx.beginPath();
+ctx.arc(x,y,4,0,Math.PI*2);
+ctx.fillStyle="white";
+ctx.fill();
+},i*15);
+}
+}
+</script>
+
+</body>
+</html>
+
